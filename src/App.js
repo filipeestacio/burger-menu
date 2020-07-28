@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useRef } from 'react';
+import { useOnClickOutside } from './hooks';
+import './styles.css';
+import { Burger, Menu } from './components';
 
-function App() {
+export default function App() {
+  // sets state for this component
+  const [open, setOpen] = useState(false);
+
+  // calls the useRef hook. The ref is set to the App div
+  const node = useRef();
+
+  //calls the custom hook passing in the ref
+  useOnClickOutside(node, () => {
+    setOpen(false);
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" ref={node}>
+      <h1>Burger Side Menu</h1>
+      <h2>Uses a clever CSS, props and a custom hooks</h2>
+      <Burger open={open} setOpen={setOpen} />
+      <Menu open={open} setOpen={setOpen} />
     </div>
   );
 }
-
-export default App;
