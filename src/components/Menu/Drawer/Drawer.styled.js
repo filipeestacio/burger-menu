@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledMenu = styled.nav`
+export const StyledDrawer = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
