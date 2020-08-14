@@ -1,29 +1,24 @@
-import React from 'react';
-import { StyledMenu } from './Menu.styled';
+import React, { useState, useRef } from 'react';
+import { Burger } from './Burger';
+import { Drawer } from './Drawer';
+import { useOnClickOutside } from './hooks';
 
-const Menu = ({ open }) => {
+export const Menu = ({ items = [] }) => {
+  // sets state for this component
+  const [open, setOpen] = useState(false);
+
+  // calls the useRef hook. The ref is set to the App div
+  const node = useRef();
+
+  //calls the custom hook passing in the ref
+  useOnClickOutside(node, () => {
+    setOpen(false);
+  });
+
   return (
-    <StyledMenu open={open}>
-      <a href="/">
-        <span role="img" aria-label="item 1">
-          &#x1f481;&#x1f3fb;&#x200d;&#x2642;&#xfe0f;
-        </span>
-        Item 1
-      </a>
-      <a href="/">
-        <span role="img" aria-label="item 2">
-          &#x1f4b8;
-        </span>
-        Item 2
-      </a>
-      <a href="/">
-        <span role="img" aria-label="item 3">
-          &#x1f4e9;
-        </span>
-        Item 3
-      </a>
-    </StyledMenu>
+    <div ref={node}>
+      <Burger open={open} setOpen={setOpen} />
+      <Drawer open={open} setOpen={setOpen} items={items} />
+    </div>
   );
 };
-
-export default Menu;
