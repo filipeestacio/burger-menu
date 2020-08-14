@@ -20,7 +20,15 @@ export default function App() {
       <h1>Burger Side Menu</h1>
       <h2>Uses a clever CSS, props and a custom hooks</h2>
       <Burger open={open} setOpen={setOpen} />
-      <Menu open={open} setOpen={setOpen} />
+      <Menu
+        open={open}
+        setOpen={setOpen}
+        items={[
+          { label: 'Home', url: '#' },
+          { label: 'About', url: '#' },
+          { label: 'Contacts', url: '#' },
+        ]}
+      />
     </div>
   );
 }
